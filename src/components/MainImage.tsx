@@ -24,7 +24,7 @@ const MainImage = () => {
       {imgPath && (
         <Image
           src={imgPath}
-          width={375}
+          width={400}
           height={415}
           alt="main"
           style={{ objectFit: 'cover' }}
