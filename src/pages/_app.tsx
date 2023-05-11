@@ -3,21 +3,28 @@ import '@/styles/globals.css';
 import Seo from '@/components/Seo';
 import Layout from '@/components/Layout';
 import localFont from 'next/font/local';
+import NavBar from '@/components/NavBar';
+import { usePathname } from 'next/navigation';
 
 const myFont = localFont({
   src: '../assets/sanfranciscodisplay-regular-webfont.woff',
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const pathname = usePathname();
   return (
-    <>
-      <Layout className={myFont.className}>
-        <Seo title="넷플릭스" />
-        <Component {...pageProps} />
-      </Layout>
+    <div className="container">
+      <Seo title="넷플릭스" />
+      <Component {...pageProps} />
+      {pathname !== '/' && <NavBar />}
 
-      <style jsx>{``}</style>
-    </>
+      <style jsx>{`
+        .container {
+          width: 100%;
+          height: 100%;
+        }
+      `}</style>
+    </div>
   );
 };
 

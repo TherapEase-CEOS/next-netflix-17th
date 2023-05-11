@@ -1,11 +1,9 @@
-// 메인 페이지
+import React from 'react';
 
-import MainImage from '@/components/MainImage';
-
-const Home = () => {
+export default function index() {
   return (
     <div className="container">
-      <MainImage />
+      This is Search page.
       <style jsx>{`
         .container {
           background-color: black;
@@ -15,6 +13,4 @@ const Home = () => {
       `}</style>
     </div>
   );
-};
-
-export default Home;
+}
