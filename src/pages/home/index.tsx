@@ -38,7 +38,7 @@ const Home = ({
         return (
           <div className="section">
             <h3>{title}</h3>
-            <FlatList movieLists={data} />
+            <FlatList movieLists={data} round={false} />
           </div>
         );
       })}
