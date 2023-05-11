@@ -1,10 +1,12 @@
 // 메인 페이지
 
-import MainImage from '@/components/MainImage';
+import Header from '../../components/Header';
+import MainImage from '../../components/MainImage';
 
 const Home = () => {
   return (
     <div className="container">
+      <Header />
       <MainImage />
       <style jsx>{`
         .container {
