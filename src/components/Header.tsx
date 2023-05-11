@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { transformScale } from '@/styles/theme';
 
 const Header = () => {
   const MENU_LIST = ['TV Shows', 'Movies', 'My List'];
@@ -36,7 +37,10 @@ const Header = () => {
           span {
             color: white;
             font-size: 17.2px;
-            cursor: pointer;
+          }
+
+          span:hover {
+            ${transformScale}
           }
         `}
       </style>
