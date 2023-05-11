@@ -3,11 +3,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { IMovie } from '@/interfaces/interfaces';
 import { IMAGE_BASE_URL } from '@/utils/constants';
-const FlatList = ({ movieLists }: { movieLists: IMovie[] }) => {
+const FlatList = ({
+  movieLists,
+  round,
+}: {
+  movieLists: IMovie[];
+  round: boolean;
+}) => {
   return (
     <div className="container">
       {movieLists.map((movie, idx) => (
-        <FlatListItem item={movie} key={idx} />
+        <FlatListItem item={movie} key={idx} round={round} />
       ))}
       <style jsx>{`
         .container {
@@ -21,28 +27,33 @@ const FlatList = ({ movieLists }: { movieLists: IMovie[] }) => {
   );
 };
 
-const FlatListItem = ({ item }: { item: IMovie }) => {
+const FlatListItem = ({ item, round }: { item: IMovie; round: boolean }) => {
   const { title, id, poster_path } = item;
-  return (
-    <Link href={`/detail/${id}`} key={12}>
-      <div className="wrapper">
-        <Image
-          src={`${IMAGE_BASE_URL}${poster_path}`}
-          width={100}
-          height={160}
-          alt={title}
-          style={{
-            objectFit: 'cover',
-          }}
-        />
 
-        <style jsx>{`
-          .wrapper {
-            width: 6.5rem;
-            height: 10rem;
-          }
-        `}</style>
-      </div>
+  const size = round ? 'round' : 'default';
+
+  const sizes = {
+    default: {
+      width: 100,
+      height: 160,
+    },
+    round: {
+      width: 104,
+      height: 104,
+    },
+  };
+  return (
+    <Link href={`/detail/${id}`} key={id}>
+      <Image
+        src={`${IMAGE_BASE_URL}${poster_path}`}
+        width={sizes[size].width}
+        height={sizes[size].height}
+        alt={title}
+        style={{
+          objectFit: 'cover',
+          borderRadius: round ? '10rem' : 0,
+        }}
+      />
     </Link>
   );
 };
