@@ -2,7 +2,7 @@
 
 import Header from '../../components/Header';
 import MainImage from '../../components/MainImage';
-import PlayBar from '@/components/PlayBar';
+import PlayBar from '../../components/PlayBar';
 
 const Home = () => {
   return (
