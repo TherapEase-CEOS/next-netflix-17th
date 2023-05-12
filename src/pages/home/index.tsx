@@ -80,19 +80,19 @@ const Home = ({
 
 export async function getServerSideProps() {
   const { results: nowPlayingMovies } = await (
-    await fetch(`${WEB_SERVER_URL}/api/movies/now_playing`)
+    await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.API_KEY}`)
   ).json();
 
   const { results: popularMovies } = await (
-    await fetch(`${WEB_SERVER_URL}/api/movies/popular`)
+    await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`)
   ).json();
 
   const { results: topRatedMovies } = await (
-    await fetch(`${WEB_SERVER_URL}/api/movies/top_rated`)
+    await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}`)
   ).json();
 
   const { results: upcomingMovies } = await (
-    await fetch(`${WEB_SERVER_URL}/api/movies/upcoming`)
+    await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.API_KEY}`)
   ).json();
 
   return {
