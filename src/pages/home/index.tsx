@@ -12,7 +12,6 @@ const Home = ({
   topRatedMovies,
   upcomingMovies,
 }: any) => {
-
   const sections = [
     {
       title: 'Now Playing',
@@ -33,7 +32,7 @@ const Home = ({
   ];
   return (
     <div className="container">
-       <Header />
+      <Header />
       <MainImage />
       <PlayBar />
       <div className="section">
@@ -73,7 +72,6 @@ const Home = ({
         }
         .gap {
           height: 64px;
-
         }
       `}</style>
     </div>
