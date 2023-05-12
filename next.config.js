@@ -2,7 +2,21 @@
 const API_KEY = process.env.API_KEY;
 
 const nextConfig = {
-  reactStrictMode: true,
+
+  reactStrictMode: false,
+  async rewrites() {
+    return [
+      {
+        source: '/api/movies/trending',
+        destination: `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`,
+      },
+      {
+        source: '/api/movies/:type',
+        destination: `https://api.themoviedb.org/3/movie/:type?api_key=${API_KEY}`,
+      },
+
+    ];
+  },
 
   images: {
     remotePatterns: [
@@ -10,19 +24,20 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'image.tmdb.org',
         port: '',
-        pathname: '/t/p/original/**',
+
+        pathname: '/t/p/w500/**',
       },
+       {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        port: '',
+
+        pathname: '/t/p/original/**',
+      }
     ],
   },
 
-  async rewrites() {
-    return [
-      {
-        source: '/api/movies/trending',
-        destination: `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`,
-      },
-    ];
-  },
+
 };
 
 module.exports = nextConfig;
