@@ -36,7 +36,7 @@ const Home = ({
 
       {sections.map(({ title, data }) => {
         return (
-          <div className="section">
+          <div className="section" key={title}>
             <h3>{title}</h3>
             <FlatList movieLists={data} round={false} />
           </div>
