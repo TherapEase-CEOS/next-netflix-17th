@@ -1,7 +1,6 @@
 // 메인 페이지
 import FlatList from '../../components/FlatList';
-import { useState } from 'react';
-import { WEB_SERVER_URL } from '@/utils/constants';
+// import { WEB_SERVER_URL } from '@/utils/constants';
 import Header from '../../components/Header';
 import MainImage from '../../components/MainImage';
 import PlayBar from '../../components/PlayBar';
@@ -11,6 +10,7 @@ const Home = ({
   popularMovies,
   topRatedMovies,
   upcomingMovies,
+  trendingMovies,
 }: any) => {
   const sections = [
     {
@@ -33,7 +33,7 @@ const Home = ({
   return (
     <div className="container">
       <Header />
-      <MainImage />
+      <MainImage movies={trendingMovies} />
       <PlayBar />
       <div className="section">
         <h3>{'Previews'}</h3>
@@ -80,23 +80,43 @@ const Home = ({
 
 export async function getServerSideProps() {
   const { results: nowPlayingMovies } = await (
-    await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.API_KEY}`)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.API_KEY}`
+    )
   ).json();
 
   const { results: popularMovies } = await (
-    await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
+    )
   ).json();
 
   const { results: topRatedMovies } = await (
-    await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}`)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}`
+    )
   ).json();
 
   const { results: upcomingMovies } = await (
-    await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.API_KEY}`)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.API_KEY}`
+    )
+  ).json();
+
+  const { results: trendingMovies } = await (
+    await fetch(
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}`
+    )
   ).json();
 
   return {
-    props: { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies },
+    props: {
+      nowPlayingMovies,
+      popularMovies,
+      topRatedMovies,
+      upcomingMovies,
+      trendingMovies,
+    },
   };
 }
 
