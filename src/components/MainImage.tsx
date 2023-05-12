@@ -34,6 +34,7 @@ const MainImage = () => {
 
       <style jsx>{`
         .wrapper {
+          position: relative;
           width: 100%;
           height: 415px;
         }
