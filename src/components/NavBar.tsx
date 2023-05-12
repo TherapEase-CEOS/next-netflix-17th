@@ -82,13 +82,17 @@ const NavBar = () => {
                 />
               )}
 
-              <text
+
+              <span
+
                 className={`tab__text ${
                   selected ? 'selected' : 'not-selected'
                 }`}
               >
                 {name}
-              </text>
+
+              </span>
+
             </div>
           </Link>
         );
