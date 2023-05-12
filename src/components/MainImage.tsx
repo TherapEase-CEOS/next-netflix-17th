@@ -17,10 +17,10 @@ const MainImage = () => {
       });
     };
     getTrendingMovie();
-  });
+  }, []);
 
   return (
-    <div>
+    <div className="wrapper">
       {imgPath && (
         <Image
           src={imgPath}
@@ -30,6 +30,23 @@ const MainImage = () => {
           style={{ objectFit: 'cover' }}
         />
       )}
+      <div className="linearGradient"></div>
+
+      <style jsx>{`
+        .wrapper {
+          width: 100%;
+          height: 415px;
+        }
+
+        .linearGradient {
+          position: absolute;
+          top: 0;
+          width: 400px;
+          height: 415px;
+          z-index: 90;
+          background: linear-gradient(to top, black, transparent 10%);
+        }
+      `}</style>
     </div>
   );
 };

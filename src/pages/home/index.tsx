@@ -2,12 +2,14 @@
 
 import Header from '../../components/Header';
 import MainImage from '../../components/MainImage';
+import PlayBar from '../../components/PlayBar';
 
 const Home = () => {
   return (
     <div className="container">
       <Header />
       <MainImage />
+      <PlayBar />
       <style jsx>{`
         .container {
           background-color: black;
