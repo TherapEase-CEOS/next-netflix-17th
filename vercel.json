@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/movies/trending",
-      "destination": "https://api.themoviedb.org/3/trending/movie/day?api_key=${env:API_KEY}"
+      "destination": "https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}"
     },
     {
       "source": "/api/movies/:type",
-      "destination": "https://api.themoviedb.org/3/movie/:type?api_key=${env:API_KEY}"
+      "destination": "https://api.themoviedb.org/3/movie/:type?api_key=${API_KEY}"
     }
   ]
 }
