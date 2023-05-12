@@ -17,7 +17,7 @@ const MainImage = () => {
       });
     };
     getTrendingMovie();
-  });
+  }, []);
 
   return (
     <div className="wrapper">
