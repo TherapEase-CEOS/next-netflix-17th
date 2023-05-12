@@ -2,6 +2,9 @@
 import FlatList from '../../components/FlatList';
 import { useState } from 'react';
 import { WEB_SERVER_URL } from '@/utils/constants';
+import Header from '../../components/Header';
+import MainImage from '../../components/MainImage';
+import PlayBar from '../../components/PlayBar';
 
 const Home = ({
   nowPlayingMovies,
@@ -9,6 +12,7 @@ const Home = ({
   topRatedMovies,
   upcomingMovies,
 }: any) => {
+
   const sections = [
     {
       title: 'Now Playing',
@@ -29,6 +33,9 @@ const Home = ({
   ];
   return (
     <div className="container">
+       <Header />
+      <MainImage />
+      <PlayBar />
       <div className="section">
         <h3>{'Previews'}</h3>
         <FlatList movieLists={upcomingMovies} round />
@@ -66,6 +73,7 @@ const Home = ({
         }
         .gap {
           height: 64px;
+
         }
       `}</style>
     </div>
