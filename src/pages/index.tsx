@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { flexCenter } from '@/styles/theme';
 
 const Landing = () => {
   const router = useRouter();
@@ -19,11 +20,10 @@ const Landing = () => {
         height={500}
         alt="netflix-logo"
       />
+
       <style jsx>{`
         .container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          ${flexCenter}
           width: 100%;
           height: 100%;
         }
