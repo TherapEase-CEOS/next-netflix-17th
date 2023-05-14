@@ -13,18 +13,20 @@ const myFont = localFont({
 const App = ({ Component, pageProps }: AppProps) => {
   const pathname = usePathname();
   return (
-    <div className="container">
-      <Seo title="넷플릭스" />
-      <Component {...pageProps} />
-      {pathname !== '/' && <NavBar />}
+    <Layout className={myFont.className}>
+      <div className="container">
+        <Seo title="넷플릭스" />
+        <Component {...pageProps} />
+        {pathname !== '/' && <NavBar />}
 
-      <style jsx>{`
-        .container {
-          width: 100%;
-          height: 100%;
-        }
-      `}</style>
-    </div>
+        <style jsx>{`
+          .container {
+            width: 100%;
+            height: 100%;
+          }
+        `}</style>
+      </div>
+    </Layout>
   );
 };
 

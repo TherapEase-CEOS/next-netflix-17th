@@ -60,7 +60,7 @@ const Home = ({
         h3 {
           font-size: 21px;
           margin: 1.5rem 0rem 0.5rem 1rem;
-          font-family: 'SF Pro Display';
+          // font-family: 'SF Pro Display';
           font-weight: 900;
           color: white;
         }
