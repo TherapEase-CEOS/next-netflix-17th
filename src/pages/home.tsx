@@ -1,9 +1,9 @@
 // 메인 페이지
-import FlatList from '../../components/FlatList';
+import FlatList from '../components/FlatList';
 // import { WEB_SERVER_URL } from '@/utils/constants';
-import Header from '../../components/Header';
-import MainImage from '../../components/MainImage';
-import PlayBar from '../../components/PlayBar';
+import Header from '../components/Header';
+import MainImage from '../components/MainImage';
+import PlayBar from '../components/PlayBar';
 
 const Home = ({
   nowPlayingMovies,
