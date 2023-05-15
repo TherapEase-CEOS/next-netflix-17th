@@ -1,22 +1,14 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { fetchTrendingMovies } from '@/api/api';
+import { IMAGE_BASE_URL } from '@/utils/constants';
 
-// TODO - 리렌더링 여러번 발생 문제
-
-const MainImage = () => {
+const MainImage = ({ movies }: { movies: any }) => {
   const rand = Math.floor(Math.random() * 20);
+
   const [imgPath, setImgPath] = useState<string>('');
 
   useEffect(() => {
-    const getTrendingMovie = async () => {
-      await fetchTrendingMovies().then((data) => {
-        setImgPath(
-          `https://image.tmdb.org/t/p/original${data.results[rand].poster_path}`
-        );
-      });
-    };
-    getTrendingMovie();
+    setImgPath(`${IMAGE_BASE_URL}${movies[rand].poster_path}`);
   }, []);
 
   return (

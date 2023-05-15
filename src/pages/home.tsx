@@ -1,16 +1,16 @@
 // 메인 페이지
-import FlatList from '../../components/FlatList';
-import { useState } from 'react';
-import { WEB_SERVER_URL } from '@/utils/constants';
-import Header from '../../components/Header';
-import MainImage from '../../components/MainImage';
-import PlayBar from '../../components/PlayBar';
+import FlatList from '../components/FlatList';
+// import { WEB_SERVER_URL } from '@/utils/constants';
+import Header from '../components/Header';
+import MainImage from '../components/MainImage';
+import PlayBar from '../components/PlayBar';
 
 const Home = ({
   nowPlayingMovies,
   popularMovies,
   topRatedMovies,
   upcomingMovies,
+  trendingMovies,
 }: any) => {
   const sections = [
     {
@@ -33,7 +33,7 @@ const Home = ({
   return (
     <div className="container">
       <Header />
-      <MainImage />
+      <MainImage movies={trendingMovies} />
       <PlayBar />
       <div className="section">
         <h3>{'Previews'}</h3>
@@ -60,7 +60,7 @@ const Home = ({
         h3 {
           font-size: 21px;
           margin: 1.5rem 0rem 0.5rem 1rem;
-          font-family: 'SF Pro Display';
+          // font-family: 'SF Pro Display';
           font-weight: 900;
           color: white;
         }
@@ -80,23 +80,43 @@ const Home = ({
 
 export async function getServerSideProps() {
   const { results: nowPlayingMovies } = await (
-    await fetch(`${WEB_SERVER_URL}/api/movies/now_playing`)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.API_KEY}`
+    )
   ).json();
 
   const { results: popularMovies } = await (
-    await fetch(`${WEB_SERVER_URL}/api/movies/popular`)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
+    )
   ).json();
 
   const { results: topRatedMovies } = await (
-    await fetch(`${WEB_SERVER_URL}/api/movies/top_rated`)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}`
+    )
   ).json();
 
   const { results: upcomingMovies } = await (
-    await fetch(`${WEB_SERVER_URL}/api/movies/upcoming`)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.API_KEY}`
+    )
+  ).json();
+
+  const { results: trendingMovies } = await (
+    await fetch(
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}`
+    )
   ).json();
 
   return {
-    props: { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies },
+    props: {
+      nowPlayingMovies,
+      popularMovies,
+      topRatedMovies,
+      upcomingMovies,
+      trendingMovies,
+    },
   };
 }
 
