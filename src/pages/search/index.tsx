@@ -76,6 +76,7 @@ const Search = () => {
           background-color: black;
           display: flex;
           flex-direction: column;
+          overflow-y: scroll;
         }
 
         .sectionInput {
