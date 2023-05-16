@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import SearchCard from '@/components/SearchCard';
 import { IMovie } from '@/interfaces/interfaces';
+import { useState } from 'react';
 
 const Search = () => {
   // TO BE DELETED
@@ -54,10 +56,40 @@ const Search = () => {
     },
   ];
 
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleCloseClick = () => {
+    setInputValue('');
+  };
+
   return (
     <div className="container">
       <div className="sectionInput">
-        <input type="text" placeholder="Search for movies ..."></input>
+        <Image
+          src={`/icons/search2.svg`}
+          width={20}
+          height={20}
+          alt="search"
+        ></Image>
+        <input
+          value={inputValue}
+          onChange={handleInputChange}
+          type="text"
+          placeholder="Search for movies ..."
+          spellCheck={false}
+        ></input>
+        <Image
+          src={`/icons/close.svg`}
+          width={15}
+          height={15}
+          alt="close"
+          onClick={handleCloseClick}
+          style={{ cursor: 'pointer' }}
+        ></Image>
       </div>
 
       <div className="sectionResult">
@@ -80,19 +112,25 @@ const Search = () => {
         }
 
         .sectionInput {
+          width: 100%;
+          height: 52px;
           margin-top: 44px;
+          padding: 0 20px;
           display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: var(--gray-bg-tag);
         }
 
         .sectionInput input {
-          width: 100%;
+          width: calc(100% - 40px - 20px - 15px);
           height: 52px;
-          padding: 0 45px;
+          padding: 0;
           font-family: SF Pro Display;
           font-size: 16px;
           font-weight: 400;
           color: var(--gray-font-tag);
-          background-color: var(--gray-bg-tag);
+          background-color: transparent;
           border: none;
 
           &:focus {
