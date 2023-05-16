@@ -51,7 +51,7 @@ const Home = ({
 
       <style jsx>{`
         .container {
-          width: 400px;
+          width: 375px;
           height: 100%;
           background-color: black;
           overflow-y: scroll;

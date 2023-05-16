@@ -82,24 +82,20 @@ const NavBar = () => {
                 />
               )}
 
-
               <span
-
                 className={`tab__text ${
                   selected ? 'selected' : 'not-selected'
                 }`}
               >
                 {name}
-
               </span>
-
             </div>
           </Link>
         );
       })}
       <style jsx>{`
         .tab-container {
-          width: 400px;
+          width: 375px;
           height: 64px;
           display: flex;
           flex-direction: row;
