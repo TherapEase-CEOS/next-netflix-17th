@@ -22,7 +22,7 @@ const SearchCard = ({ movie }: SearchCardProps) => {
           height={76}
           alt="image"
           style={{ objectFit: 'cover' }}
-        ></Image>
+        />
         <span>{movie.title}</span>
         <div className="iconWrapper">
           <Image
