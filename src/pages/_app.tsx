@@ -12,18 +12,18 @@ const myFont = localFont({
 
 const App = ({ Component, pageProps }: AppProps) => {
   const pathname = usePathname();
-  const isNavBar = pathname !== '/';
+  const isLandigPage = pathname === '/';
 
   return (
     <div className={`${myFont.className} container`}>
       <Seo title="넷플릭스" />
       <Component {...pageProps} />
-      {isNavBar && <NavBar />}
+      {!isLandigPage && <NavBar />}
 
       <style jsx>{`
         .container {
           width: 100%;
-          height: ${isNavBar ? 'calc(100% - 64px)' : '100%'};
+          height: ${isLandigPage ? '100%' : 'calc(100% - 64px)'};
         }
       `}</style>
     </div>
