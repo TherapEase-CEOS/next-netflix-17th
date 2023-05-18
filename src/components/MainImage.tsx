@@ -34,7 +34,7 @@ const MainImage = ({ movies }: { movies: any }) => {
         .linearGradient {
           position: absolute;
           top: 0;
-          width: 400px;
+          width: 375px;
           height: 415px;
           z-index: 90;
           background: linear-gradient(to top, black, transparent 10%);

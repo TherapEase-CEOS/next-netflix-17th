@@ -48,30 +48,27 @@ const Home = ({
           </div>
         );
       })}
-      <div className="gap" />
+
       <style jsx>{`
         .container {
-          background-color: black;
-          width: 400px;
-          overflow: hidden;
+          width: 375px;
           height: 100%;
+          background-color: black;
           overflow-y: scroll;
         }
+
         h3 {
           font-size: 21px;
           margin: 1.5rem 0rem 0.5rem 1rem;
-          // font-family: 'SF Pro Display';
           font-weight: 900;
           color: white;
         }
+
         .section {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: flex-start;
-        }
-        .gap {
-          height: 64px;
         }
       `}</style>
     </div>

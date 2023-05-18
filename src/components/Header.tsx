@@ -24,7 +24,7 @@ const Header = () => {
             position: absolute;
             top: 24px;
 
-            width: 400px;
+            width: 375px;
             height: 57px;
             padding: 0 20px;
             z-index: 99;

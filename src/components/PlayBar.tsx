@@ -11,10 +11,10 @@ const PlayBar = () => {
       <div className="iconWrapper">
         <button disabled>
           <Image
-            src={'/icons/play_icon.svg'}
+            src={'/icons/play_arrow.svg'}
             width={24}
             height={24}
-            alt="play_icon"
+            alt="play_arrow"
           />
           <span className="">Play</span>
         </button>
