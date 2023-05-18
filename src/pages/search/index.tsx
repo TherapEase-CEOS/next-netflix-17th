@@ -68,7 +68,7 @@ const Search = () => {
 
   return (
     <div className="container">
-      <div className="sectionInput">
+      <div className="section-input">
         <Image
           src={`/icons/search2.svg`}
           width={20}
@@ -92,9 +92,9 @@ const Search = () => {
         ></Image>
       </div>
 
-      <div className="sectionResult">
+      <div className="section-result">
         <span>Top Searches</span>
-        <div className="cardsWrapper">
+        <div className="card-container">
           {dummyData.map((movie: IMovie) => {
             return <SearchCard key={movie.id} movie={movie} />;
           })}
@@ -111,7 +111,7 @@ const Search = () => {
           overflow-y: scroll;
         }
 
-        .sectionInput {
+        .section-input {
           width: 100%;
           height: 52px;
           margin-top: 44px;
@@ -122,7 +122,7 @@ const Search = () => {
           background-color: var(--gray-bg-tag);
         }
 
-        .sectionInput input {
+        .section-input input {
           width: calc(100% - 40px - 20px - 15px);
           height: 52px;
           padding: 0;
@@ -138,20 +138,20 @@ const Search = () => {
           }
         }
 
-        .sectionResult {
+        .section-result {
           display: flex;
           flex-direction: column;
           background-color: black;
         }
 
-        .sectionResult span {
+        .section-result span {
           margin: 20px 10px;
           color: white;
           font-size: 26px;
           font-weight: 700;
         }
 
-        .cardsWrapper {
+        .card-container {
           margin: -3px 0;
         }
       `}</style>
