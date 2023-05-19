@@ -2,12 +2,14 @@
 import BannerImage from '@/components/BannerImage';
 import { IMovie } from '@/interfaces/interfaces';
 import Image from 'next/image';
+import { BASE_URL } from '../../utils/constants';
 
-const Detail = ({ params }: { params: any }) => {
+const Detail = ({ moive }: { moive: IMovie }) => {
+  const { poster_path, overview } = moive;
+
   return (
     <div className="container">
-      <BannerImage poster_path={'/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg'} />
-
+      <BannerImage poster_path={poster_path} />
       <button className="play-button">
         <Image
           src={'/icons/play_arrow.svg'}
@@ -20,11 +22,7 @@ const Detail = ({ params }: { params: any }) => {
       <article>
         <h3>Previews</h3>
 
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit quam dui,
-          vivamus bibendum ut. A morbi mi tortor ut felis non accumsan accumsan
-          quis. Massa, id ut ipsum aliquam enim non posuere pulvinar diam.
-        </span>
+        <span>{overview}</span>
       </article>
       <style jsx>{`
         .container {
@@ -105,5 +103,13 @@ const Detail = ({ params }: { params: any }) => {
     </div>
   );
 };
+export const getServerSideProps = async (context: any) => {
+  const movieId = context.query.id;
 
+  let moive = await (
+    await fetch(`${BASE_URL}/movie/${movieId}?api_key=${process.env.API_KEY}`)
+  ).json();
+
+  return { props: { moive } };
+};
 export default Detail;
