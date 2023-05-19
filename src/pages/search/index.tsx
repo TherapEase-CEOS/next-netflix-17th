@@ -1,62 +1,15 @@
 import Image from 'next/image';
 import SearchCard from '@/components/SearchCard';
 import { IMovie } from '@/interfaces/interfaces';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { BASE_URL } from '@/utils/constants';
+
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const Search = () => {
-  // TO BE DELETED
-  const dummyData = [
-    {
-      id: 502356,
-      title: 'The Super Mario Bros. Movie',
-      poster_path: '/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg',
-      backdrop_path: '/nLBRD7UPR6GjmWQp6ASAfCTaWKX.jpg',
-    },
-    {
-      id: 552688,
-      title: 'The Mother',
-      poster_path: '/vnRthEZz16Q9VWcP5homkHxyHoy.jpg',
-      backdrop_path: '/n5NSF8wZeWQHHZtuWgbRAVpqXFR.jpg',
-    },
-    {
-      id: 5023561,
-      title: 'The Super Mario Bros. Movie',
-      poster_path: '/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg',
-      backdrop_path: '/nLBRD7UPR6GjmWQp6ASAfCTaWKX.jpg',
-    },
-    {
-      id: 5526881,
-      title: 'The Mother',
-      poster_path: '/vnRthEZz16Q9VWcP5homkHxyHoy.jpg',
-      backdrop_path: '/n5NSF8wZeWQHHZtuWgbRAVpqXFR.jpg',
-    },
-    {
-      id: 5023562,
-      title: 'The Super Mario Bros. Movie',
-      poster_path: '/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg',
-      backdrop_path: '/nLBRD7UPR6GjmWQp6ASAfCTaWKX.jpg',
-    },
-    {
-      id: 5526882,
-      title: 'The Mother',
-      poster_path: '/vnRthEZz16Q9VWcP5homkHxyHoy.jpg',
-      backdrop_path: '/n5NSF8wZeWQHHZtuWgbRAVpqXFR.jpg',
-    },
-    {
-      id: 5023563,
-      title: 'The Super Mario Bros. Movie',
-      poster_path: '/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg',
-      backdrop_path: '/nLBRD7UPR6GjmWQp6ASAfCTaWKX.jpg',
-    },
-    {
-      id: 5526883,
-      title: 'The Mother',
-      poster_path: '/vnRthEZz16Q9VWcP5homkHxyHoy.jpg',
-      backdrop_path: '/n5NSF8wZeWQHHZtuWgbRAVpqXFR.jpg',
-    },
-  ];
-
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState<string>('');
+  const [fetchPage, setFetchPage] = useState<number>(1);
+  const [movieList, setMovieList] = useState([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -65,6 +18,19 @@ const Search = () => {
   const handleCloseClick = () => {
     setInputValue('');
   };
+
+  useEffect(() => {
+    const fetchMovieList = async () =>
+      await fetch(
+        inputValue
+          ? `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${inputValue}&page=${fetchPage}`
+          : `${BASE_URL}/movie/popular?api_key=${API_KEY}`
+      )
+        .then((res) => res.json())
+        .then((res) => setMovieList(res.results));
+
+    fetchMovieList();
+  }, [inputValue, fetchPage]);
 
   return (
     <div className="container">
@@ -95,7 +61,7 @@ const Search = () => {
       <div className="section-result">
         <span>Top Searches</span>
         <div className="card-container">
-          {dummyData.map((movie: IMovie) => {
+          {movieList.map((movie: IMovie) => {
             return <SearchCard key={movie.id} movie={movie} />;
           })}
         </div>
@@ -158,5 +124,14 @@ const Search = () => {
     </div>
   );
 };
+
+// export async function getServerSideProps() {
+//   const { results:searchedMovies } = await (
+//     await fetch(`${BASE_URL}/search/movie?api_key=${process.env.API_KEY}&query=${inputValue}&page=${fetchPage}`)
+//   ).json();
+//   return {
+//     props: { searchedMovies },
+//   };
+// }
 
 export default Search;
