@@ -48,7 +48,7 @@ const FlatListItem = ({ item, round }: { item: IMovie; round: boolean }) => {
         src={`${IMAGE_BASE_URL}${poster_path}`}
         width={sizes[size].width}
         height={sizes[size].height}
-        alt={title}
+        alt={title || 'movie_img'}
         style={{
           objectFit: 'cover',
           borderRadius: round ? '10rem' : 0,
