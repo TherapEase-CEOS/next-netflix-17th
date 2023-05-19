@@ -17,7 +17,7 @@ const SearchCard = ({ movie }: SearchCardProps) => {
     <Link href={`detail/${movie.id}`}>
       <div className="wrapper">
         <Image
-          src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+          src={`${IMAGE_BASE_URL}/${movie.poster_path}`}
           width={146}
           height={76}
           alt="image"
