@@ -3,10 +3,39 @@ import BannerImage from '@/components/BannerImage';
 import { IMovie } from '@/interfaces/interfaces';
 import Image from 'next/image';
 import { BASE_URL } from '../../utils/constants';
-
+import { useEffect } from 'react';
+import { useCallback } from 'react';
+import { useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 const Detail = ({ moive }: { moive: IMovie }) => {
-  const { poster_path, overview } = moive;
+  const { name, poster_path, overview } = moive;
+  const router = useRouter();
+  const { query } = router;
 
+  const youtubeId = useRef(null);
+
+  const getYoutubeLink = async () => {
+    let results = await (
+      await fetch(
+        `https://www.googleapis.com/youtube/v3/search?type=video&q=${query.name}&key=${process.env.YOUTUBE_API_KEY}`
+      )
+    ).json();
+
+    youtubeId.current = results.items[0].id.videoId;
+
+    console.log(results, youtubeId.current);
+  };
+
+  useEffect(() => {
+    getYoutubeLink();
+  }, []);
+
+  const handleClickPlayBtn = () => {
+    if (youtubeId.current) {
+      window.open(`https://www.youtube.com/watch?v=${youtubeId.current}`);
+    }
+  };
   return (
     <div className="container">
       <BannerImage poster_path={poster_path} />
@@ -17,7 +46,9 @@ const Detail = ({ moive }: { moive: IMovie }) => {
           height={24}
           alt="play_arrow"
         />{' '}
-        <span className="play-button__text">Play</span>
+        <span className="play-button__text" onClick={handleClickPlayBtn}>
+          Play
+        </span>
       </button>
       <article>
         <h3>Previews</h3>

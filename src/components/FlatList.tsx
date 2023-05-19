@@ -43,7 +43,7 @@ const FlatListItem = ({ item, round }: { item: IMovie; round: boolean }) => {
     },
   };
   return (
-    <Link href={`/detail/${id}`} key={id}>
+    <Link href={`/detail/${id}?name=${title}`} key={id}>
       <Image
         src={`${IMAGE_BASE_URL}${poster_path}`}
         width={sizes[size].width}
