@@ -16,11 +16,8 @@ const Detail = ({ moive }: { moive: IMovie }) => {
   const youtubeId = useRef(null);
 
   const getYoutubeLink = async () => {
-    let results = await (
-      await fetch(
-        `https://www.googleapis.com/youtube/v3/search?type=video&q=${query.name}&key=${process.env.YOUTUBE_API_KEY}`
-      )
-    ).json();
+    let results = await (await fetch(`/api/youtube/${query}`)).json();
+    console.log(results);
 
     youtubeId.current = results.items[0].id.videoId;
 
