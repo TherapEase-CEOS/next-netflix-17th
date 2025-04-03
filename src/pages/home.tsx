@@ -32,6 +32,7 @@ const Home = ({
   ];
   return (
     <div className="container">
+      <h1>adfadsfa</h1>
       <Header />
       <MainImage movies={trendingMovies} />
       <PlayBar />

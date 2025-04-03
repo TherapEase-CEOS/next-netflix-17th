@@ -8,7 +8,7 @@ const MainImage = ({ movies }: { movies: any }) => {
   const [imgPath, setImgPath] = useState<string>('');
 
   useEffect(() => {
-    setImgPath(`${IMAGE_BASE_URL}${movies[rand].poster_path}`);
+    setImgPath(`${IMAGE_BASE_URL}${movies[rand]?.poster_path}`);
   }, []);
 
   return (

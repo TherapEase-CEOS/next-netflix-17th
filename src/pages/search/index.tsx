@@ -4,6 +4,8 @@ import { IMovie } from '@/interfaces/interfaces';
 import { useEffect, useState } from 'react';
 import { BASE_URL } from '@/utils/constants';
 
+// 일반 .env 파일은 서버환경변수이므로 클라이언트에서 접근할 수 없으므로
+// 클라이언트에서 접근할 수 있는 변수를 설정 -> 하지만 보안상 위협
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const Search = () => {
@@ -23,13 +25,14 @@ const Search = () => {
     const fetchMovieList = async () =>
       await fetch(
         inputValue
-          ? `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${inputValue}&page=${fetchPage}`
-          : `${BASE_URL}/movie/popular?api_key=${API_KEY}`
+          ? `/api/search/${inputValue}/${fetchPage}`
+          : `/api/movie/popular`
       )
         .then((res) => res.json())
         .then((res) => setMovieList(res.results));
 
     fetchMovieList();
+    console.log(movieList);
   }, [inputValue, fetchPage]);
 
   return (
@@ -61,7 +64,7 @@ const Search = () => {
       <div className="section-result">
         <span>Top Searches</span>
         <div className="card-container">
-          {movieList.map((movie: IMovie) => {
+          {movieList?.map((movie: IMovie) => {
             return <SearchCard key={movie.id} movie={movie} />;
           })}
         </div>
